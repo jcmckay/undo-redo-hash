@@ -1,0 +1,24 @@
+{
+  "name": "undo-redo-hash",
+  "version": "1.0.0",
+  "description": "",
+  "main": "hash.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jcmckay/undo-redo-hash.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jcmckay/undo-redo-hash/issues"
+  },
+  "homepage": "https://github.com/jcmckay/undo-redo-hash#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0"
+  }
+}
