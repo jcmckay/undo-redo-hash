@@ -4,7 +4,8 @@
   "description": "",
   "main": "hash.js",
   "scripts": {
-    "test": "mocha --watch --recursive"
+    "test": "mocha",
+    "test-watch": "mocha --watch --recursive"
   },
   "repository": {
     "type": "git",
