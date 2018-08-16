@@ -15,6 +15,22 @@ describe('Hash', function() {
     });
   });
 
+  describe('#set', function() {
+    it('should add the key and value if not present', function() {
+      hash = new Hash();
+      hash.set(2,1);
+      expect(hash.get(2)).to.equal(1);
+    });
+
+    it('should update a key value if already exists', function() {
+      hash = new Hash();
+      hash.set(2,1);
+      expect(hash.get(2)).to.equal(1);
+      hash.set(2,2);
+      expect(hash.get(2)).to.equal(2);
+    });
+  });
+
 
   describe('#delete', function() {
     it('should delete a key if present', function() {
@@ -32,6 +48,33 @@ describe('Hash', function() {
     it('should throw an error if there is nothing to undo', function() {
       hash = new Hash();
       expect(hash.undo.bind(hash)).to.throw('Nothing to undo');
+    });
+
+    it('should undo a single set change (update)', function() {
+      hash = new Hash();
+      hash.set(1,2);
+      hash.set(1,3);
+      hash.undo();
+
+      expect(hash.get(1)).to.equal(2);
+    });
+
+    it('should undo a single set change (add)', function() {
+      hash = new Hash();
+      hash.set(1,2);
+      hash.undo();
+
+      expect(hash.get(1)).to.equal(undefined);
+    });
+
+    it('should undo (add back) a deleted item', function() {
+      hash = new Hash();
+      hash.set(1,2);
+      hash.delete(1);
+      expect(hash.get(1)).to.equal(undefined);
+      hash.undo();
+
+      expect(hash.get(1)).to.equal(2);
     });
 
   });
@@ -52,6 +95,9 @@ describe('Hash', function() {
       expect(hash.get(4)).to.equal(7);
     });
 
+  });
+
+  describe('#undo/#redo', function() {
     it('should redo multiples after a undoing multples', function() {
       hash = new Hash();
       hash.set(4,1);
@@ -87,6 +133,5 @@ describe('Hash', function() {
       hash.undo();
       expect(hash.get(4)).to.equal(1);
     });
-
   });
 });
